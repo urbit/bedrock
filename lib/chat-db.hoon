@@ -333,7 +333,7 @@
 
   =/  thepeers   (silt (turn (~(got by peers-table.state) path.msg-act) |=(a=peer-row:sur patp.a)))
   ?>  (~(has in thepeers) src.bowl)  :: messages can only be inserted by ships which are in the peers-list
-  
+
   :: logic to force-set expires-at on messages when the path has a
   :: max-expires-at-duration specified
   =/  thepath   (~(got by paths-table.state) path.msg-act)
@@ -667,7 +667,7 @@
 
   :: second, push everything into bedrock
   =/  create-path-pokes=(list card)
-    %+  turn 
+    %+  turn
       our-paths
     |=  =path-row:sur
     ^-  card
@@ -675,7 +675,7 @@
     [%pass /bedrockpoke %agent [our.bowl %bedrock] %poke %db-action !>([%create-path path.path-row %host ~ ~ ~ peers])]
 
   =/  create-chat-pokes=(list card)
-    %+  turn 
+    %+  turn
       our-paths
     |=  =path-row:sur
     ^-  card
@@ -726,7 +726,7 @@
   :: second, push everything into bedrock
   =/  cards=(list card)
     :-  [%pass /dbpoke %agent [our.bowl %bedrock] %poke %db-action !>([%refresh-chat-paths ~])]
-    %+  turn 
+    %+  turn
       messages-to-dump
     |=  =msg-part:sur
     ^-  card
@@ -880,7 +880,7 @@
   ?>  =(src.bowl ship)
   ~&  "%migrated-host passed security checks"
   =/  pr=path-row:sur  (~(got by paths-table.state) path)
-  =/  peers=(list peer-row:sur)  
+  =/  peers=(list peer-row:sur)
   %+  turn  (~(got by peers-table.state) path)
   |=  p=peer-row:sur
   ^-  peer-row:sur
@@ -1238,7 +1238,7 @@
     ++  metadata-to-json
       |=  m=(map cord cord)
       ^-  json
-      o+(~(rut by m) |=([k=cord v=cord] s+v))
+      o+(~(urn by m) |=([k=cord v=cord] s+v))
     ::
     ++  peer-row
       |=  =peer-row:sur

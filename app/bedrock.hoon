@@ -463,7 +463,7 @@
                             /remote-scry/callback
                             %arvo
                             %a
-                            %keen
+                            %chum
                             ship.id.row.change
                             /g/x/(scot %ud revision.data.row.change)/(scot %tas dap.bowl)//(scot %p ship.id.data.row.change)/(scot %da t.id.data.row.change)
                           ]
@@ -479,7 +479,7 @@
                           /remote-scry/callback
                           %arvo
                           %a
-                          %keen
+                          %chum
                           ship.id.row.change
                           /g/x/(scot %ud revision.data.row.change)/(scot %tas dap.bowl)//(scot %p ship.id.data.row.change)/(scot %da t.id.data.row.change)
                         ]

@@ -212,7 +212,7 @@
     ?~  tbl-acs
       default-access.path-row
     (need tbl-acs)
-  
+
   =/  u-role-rule   (~(get by rules) role.srcpeer)
   =/  role-rule=access-rule
     ?~  u-role-rule
@@ -352,7 +352,7 @@
       =((~(got by schemas.state) schv) schema)
     %.y
   :: validate the row against schema
-  ?>  
+  ?>
     ?:  ?=(%general -.data.row)
       =((lent schema) (lent +.data.row))  :: TODO make a stronger schema-check by comparing path/map/set/list etc for each item in the data-list
     %.y :: other types are auto-validated
@@ -424,7 +424,7 @@
   ^-  table
   %-  ~(gas by *table)
   %+  skim
-    ~(tap by tbl) 
+    ~(tap by tbl)
   |=  [k=id:common v=row]
   ^-  ?
   (gth received-at.v t)
@@ -497,7 +497,7 @@
       `state
     %-  (slog leaf+"{<dap.bowl>}: deleting paths for {<path>}" ~)
     =/  pathed    (pathify-space-path:spaces-chat path)
-    =/  prs=(list path-row)  
+    =/  prs=(list path-row)
       %+  skim
         ~(val by paths.state)
       |=(pr=path-row ?~(space.pr %.n =(path:(need space.pr) pathed)))
@@ -578,7 +578,7 @@
     :: attempt to kick from all since it doesn't hurt anything if they
     :: aren't actually in the path
     =/  pathed    (pathify-space-path:spaces-chat path)
-    =/  prs=(list path-row)  
+    =/  prs=(list path-row)
       %+  skim
         ~(val by paths.state)
       |=(pr=path-row ?~(space.pr %.n =(path:(need space.pr) pathed)))
@@ -708,7 +708,7 @@
         (~(has in roles.member) sr)
         ?-  sr
           %initiate   %.y
-          %member 
+          %member
             ?|  (~(has in roles.member) %admin)
                 (~(has in roles.member) %owner)
             ==
@@ -1180,19 +1180,20 @@
           ?.  ?=(%relay name.type.row.change)  ~
           ?>  ?=(%relay -.data.row.change)
           =/  uobj=(unit row)  (get-db type.data.row.change path.data.row.change id.data.row.change state)
-          ?~  uobj :: if we DONT have the obj already, remote-scry it
+          ?~  uobj
+            :: if we DONT have the obj already, remote-scry it
             ::~&  >>>  "asking for remote-scry"
-            :~  [
-              %pass
-              /remote-scry/callback
-              %arvo
-              %a
-              %keen
-              ship.id.row.change
-              /g/x/(scot %ud revision.data.row.change)/(scot %tas dap.bowl)//(scot %p ship.id.data.row.change)/(scot %da t.id.data.row.change)
-            ]
+            :~  :*  %pass
+                    /remote-scry/callback
+                    %arvo
+                    %a
+                    %chum
+                    ship.id.row.change
+                    /g/x/(scot %ud revision.data.row.change)/(scot %tas dap.bowl)//(scot %p ship.id.data.row.change)/(scot %da t.id.data.row.change)
+                ==
             ==
-          ~ :: otherwise, don't emit any cards
+          :: otherwise, don't emit any cards
+          ~
         %upd-row
           ?.  ?=(%relay name.type.row.change)  ~
           ?>  ?=(%relay -.data.row.change)
@@ -1203,7 +1204,7 @@
             /remote-scry/callback
             %arvo
             %a
-            %keen
+            %chum
             ship.id.row.change
             /g/x/(scot %ud revision.data.row.change)/(scot %tas dap.bowl)//(scot %p ship.id.data.row.change)/(scot %da t.id.data.row.change)
           ]
@@ -1287,7 +1288,7 @@
   =/  vent-path=path  /vent/(scot %p src.req-id)/(scot %da now.req-id)
   =/  kickcard=card  [%give %kick ~[vent-path] ~]
   :: form row from input
-  =/  created-time=@da  
+  =/  created-time=@da
     ?:(=(now.req-id *@da) now.bowl now.req-id)
   =/  creator=ship
     ?:  &(=(our.bowl src.bowl) ?!(=(src.req-id our.bowl)))
@@ -1637,7 +1638,7 @@
   =/  log1  (maybe-log hide-logs.state "{<dap.bowl>}%relay: {<req-id>} {<input-row>}")
   :: first check that the input is actually a %relay
   ?+  -.data.input-row   !!
-    %relay 
+    %relay
   :: then force to %all for protocol for now
   =.  protocol.data.input-row    %all
   :: then check that we actually have the thing being relayed
@@ -1849,12 +1850,12 @@
           %host
         (de-replication (need urep))
       =/  udef    (~(get by p.jon) 'default-access')
-      =/  default-access 
+      =/  default-access
         ?~  udef
           ~
         (de-access-rules (need udef))
       =/  utbl    (~(get by p.jon) 'table-access')
-      =/  table-access 
+      =/  table-access
         ?~  utbl
           ~
         (de-table-access (need utbl))
@@ -2067,7 +2068,7 @@
     ::
     ++  de-formatted-text
       %-  of
-      :~  
+      :~
           [%plain so]
           [%markdown so]
           [%bold so]
@@ -2112,7 +2113,7 @@
     ::
     ++  path-and-id
       %-  ot
-      :~  
+      :~
           [%path pa]
           [%id de-id]
       ==
@@ -2284,7 +2285,7 @@
           :~  ['path' s+(spat path.ch)]
               ['type' (en-db-type type.ch)]
               ['id' (row-id-to-json id.ch)]
-          == 
+          ==
       ==
     ::
     ++  en-tables
@@ -2587,7 +2588,7 @@
     ++  metadata-to-json
       |=  m=(map cord cord)
       ^-  json
-      o+(~(rut by m) |=([k=cord v=cord] s+v))
+      o+(~(urn by m) |=([k=cord v=cord] s+v))
     ::
     ++  time-bunt-null
       |=  t=@da

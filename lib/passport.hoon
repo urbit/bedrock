@@ -390,7 +390,7 @@
   =/  kickcard=card  [%give %kick ~[vent-path] ~]
 
   =/  r=row:db   (our-passport-row:scries bowl)
-  =/  pass=passport:common   
+  =/  pass=passport:common
   ?+  -.data.r  !!
     %passport  +.data.r
   ==
@@ -505,7 +505,7 @@
     =/  parsed-link=passport-data-link:common   (passport-data-link:dejs (need (de:json:html data.ln)))
     ?>  (prev-link-hash-matches parsed-link chain.p)
     :: only allow keys that are already in the crypto state to make changes
-    ?>  (validate-signing-key p ln)   
+    ?>  (validate-signing-key p ln)
     ?:  =('KEY_ADD' link-type.ln)
       =/  entity=@t     from-entity.mtd.parsed-link
       =/  key=@t        signing-address.mtd.parsed-link
@@ -638,7 +638,7 @@
       :: not discoverable, delete contact
       :_  cards
       [%pass /contacts %agent [~halnus %explore-reverse-proxy] %poke %noun !>([%remove-contact ~])]
-    :: if discoverable, 
+    :: if discoverable,
     ?:  =(contact.p old-contact)  cards :: don't poke if the contact is the same as it was
     :: otherwise, update-contact
     :_  cards
@@ -748,7 +748,7 @@
   ?.  =((lent passports) 0)  `state
   :: TODO ask %pals for as many contacts to prepopulate as we can and
   :: TODO create a poke to auto-add friends from mutuals in %pals
- 
+
   :: if we already have a bunch of contacts, just re-create ourself,
   :: don't do the whole big import
   ?:  (gth (lent (our-contacts:scries bowl)) 2)
@@ -773,7 +773,7 @@
         (create-req our.bowl contact-type:common [%contact contact.p] [our.bowl (add ~s0..1000 now.bowl)])
     ==
     [cards state]
-    
+
   =/  old-friends  .^(json %gx /(scot %p our.bowl)/friends/(scot %da now.bowl)/all/noun)
   =/  frens=(list friend:common)  (new-friends-from-old:dejs old-friends)
   =/  contacts=(list contact:common)
@@ -1445,20 +1445,20 @@
     ++  metadata-to-json
       |=  m=(map cord cord)
       ^-  json
-      o+(~(rut by m) |=([k=cord v=cord] s+v))
+      o+(~(urn by m) |=([k=cord v=cord] s+v))
     ::
     ++  map-t-list-t
       |=  m=(map cord (list cord))
       ^-  json
       :-  %o
-      %-  ~(rut by m)
+      %-  ~(urn by m)
       |=([k=cord v=(list cord)] a+(turn v |=(a=cord s+a)))
     ::
     ++  map-t-ud
       |=  m=(map cord @ud)
       ^-  json
       :-  %o
-      %-  ~(rut by m)
+      %-  ~(urn by m)
       |=([k=cord v=@ud] (numb v))
     ::
     ++  numbrd
